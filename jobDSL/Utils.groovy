@@ -24,13 +24,13 @@ static def configureGit(def job, def repositoryUrl) {
     }
 }
 
-static def configureEnv(def job, def username) {
+static def configureEnv(def job, def param, def value) {
     job.with {
         properties {
             environmentVariables {
                 keepSystemVariables(true)
                 keepBuildVariables(true)
-                env('GITHUB_USERNAME', username)
+                env(param, value)
             }
         }
     }
