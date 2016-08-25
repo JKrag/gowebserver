@@ -16,8 +16,9 @@ pipelineName = "${projectName}-pipeline_GEN"
 job(buildJobName) {
     logRotator(-1, 5, -1, -1)
     Utils.configureGit(it, "${repositoryUrl}")
-    Utils.configureEnv(it, 'GITHUB_USERNAME', "${GITHUB_USERNAME}")
-    Utils.configureEnv(it, 'DOCKER_USERNAME', "${DOCKER_USERNAME}")
+    Utils.configureEnvVars(it, 
+        GITHUB_USERNAME: "${GITHUB_USERNAME}", 
+        DOCKER_USERNAME: "${DOCKER_USERNAME}")
     steps {
         shell('''\
             echo "version=\$(cat version.txt)" > props.env
